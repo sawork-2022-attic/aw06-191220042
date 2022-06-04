@@ -2,6 +2,7 @@ package com.example.batch.config;
 
 import com.example.batch.model.Product;
 import com.example.batch.service.JsonFileReader;
+import com.example.batch.service.JsonReader;
 import com.example.batch.service.ProductProcessor;
 import com.example.batch.service.ProductWriter;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -18,6 +19,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.util.ResourceUtils;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 
 
 @Configuration
@@ -33,8 +38,8 @@ public class BatchConfig {
 
 
     @Bean
-    public ItemReader<JsonNode> itemReader() {
-        return new JsonFileReader("/home/java/meta_Clothing_Shoes_and_Jewelry.json");
+    public ItemReader<JsonNode> itemReader() throws FileNotFoundException {
+        return new JsonReader();
     }
 
     @Bean
@@ -58,7 +63,7 @@ public class BatchConfig {
     }
 
     @Bean
-    public Job chunksJob() {
+    public Job chunksJob() throws FileNotFoundException {
         return jobBuilderFactory
                 .get("chunksJob")
                 .start(processProducts(itemReader(), itemProcessor(), itemWriter()))

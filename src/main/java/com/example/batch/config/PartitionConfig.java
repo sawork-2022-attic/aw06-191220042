@@ -51,7 +51,7 @@ public class PartitionConfig {
     public Partitioner partitioner() throws Exception {
         MultiResourcePartitioner partitioner = new MultiResourcePartitioner();
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        partitioner.setResources(resolver.getResources("file:/home/java/meta_Clothing_Shoes_and_Jewelry/x*"));
+        partitioner.setResources(resolver.getResources("classpath:data/meta_Magazine_Subscriptions_100.json"));
         return partitioner;
     }
 

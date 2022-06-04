@@ -15,7 +15,7 @@ import org.springframework.batch.item.ItemReader;
 
 public class JsonReader implements StepExecutionListener, ItemReader<JsonNode> {
 
-    private final String FILE_NAME = "data/meta_Magazine_Subscriptions_100.json";
+    private final String FILE_NAME = "data/meta_Video_Games.json";
 
     private BufferedReader reader;
 
@@ -43,6 +43,7 @@ public class JsonReader implements StepExecutionListener, ItemReader<JsonNode> {
         if (reader == null) {
             initReader();
         }
-        return objectMapper.readTree(reader.readLine());
+        String line = reader.readLine();
+        return line != null ? objectMapper.readTree(line) : null;
     }
 }

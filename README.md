@@ -21,3 +21,5 @@ Please finish the following tasks:
 
 
 And, of course, always try to make the system run as fast as possible.
+
+![](src/main/resources/img.png)

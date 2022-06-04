@@ -52,7 +52,7 @@ public class JsonFileReader implements StepExecutionListener, ItemReader<JsonNod
         String line = reader.readLine();
 
         if (line != null)
-            return objectMapper.readTree(reader.readLine());
+            return objectMapper.readTree(line);
         else
             return null;
     }
